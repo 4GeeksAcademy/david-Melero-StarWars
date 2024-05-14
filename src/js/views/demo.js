@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import imagen from "../../img/starWars.jpg"
+
 
 import { Context } from "../store/appContext";
 
@@ -9,7 +11,7 @@ export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
+		<div className="container" style={{backgroundImage: `url(${imagen})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh'}}>
 			<ul className="list-group">
 				{store.demo.map((item, index) => {
 					return (

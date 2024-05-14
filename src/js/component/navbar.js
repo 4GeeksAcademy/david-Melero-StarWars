@@ -3,15 +3,42 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
+		<nav className="navbar navbar-expand-lg bg-transparent">
+			<div className="container-fluid">
+				<Link className="navbar-brand" to="/demo">Home</Link>
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span className="navbar-toggler-icon"></span>
+				</button>
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+						<Link to="/characters">
+							<button className="btn btn-warning">characters</button>
+						</Link>
+						
+						<Link to="/Planets">
+							<button className="btn btn-warning ms-2">Planets</button>
+						</Link>
+
+						<Link to= "/Vehicles" className="btn btn-warning ms-2">
+						 <button  className="btn btn-warning ms-2">Vehicles</button>	
+						</Link >
+					</ul>
+
+				</div>
 			</div>
 		</nav>
 	);
 };
+
+
+
+<nav className="navbar navbar-light bg-light mb-3">
+	<Link to="/">
+		<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+	</Link>
+	<div className="ml-auto">
+		<Link to="/characters">
+			<button className="btn btn-primary">characters</button>
+		</Link>
+	</div>
+</nav>
