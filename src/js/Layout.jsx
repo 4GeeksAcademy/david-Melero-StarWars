@@ -8,11 +8,14 @@ import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import { Characters } from "./views/Characters.js"
 import { Planets } from "./views/Planets.js"
+import { Vehicles } from "./views/Vehicles.js"
+
 
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { DetailsUsers } from "./views/DetailsUsers.js";
+import { Contacts } from "./views/Contacts.js";
 
 //create your first component
 const Layout = () => {
@@ -21,7 +24,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div className="d-flex flex-column min-vh-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
@@ -30,9 +33,11 @@ const Layout = () => {
 						<Route path="/Characters" element={<Characters />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
-						<Route path="/details" element={<DetailsUsers/>} />		
+						<Route path="/characterDetails/:personajeId" element={<DetailsUsers/>} />		
 						<Route path="/planets" element={<Planets/>} />		
+						<Route path="/contacts" element={<Contacts/>} />		
+						<Route path="/vehicles" element={<Vehicles/>} />		
+						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

@@ -14,7 +14,7 @@ export const Planets = () => {
                     <img src={`https://starwars-visualguide.com/assets/img/planets/${item.uid}.jpg`} className="card-img-top mt-2 " alt="..." 
                      style={{height: '300px', width: '500px'}}/>
                     <div className="card-body mt-2">
-                        <h5 className="card-title text-white">{item.name}</h5>
+                        <h5 className="card-title text-white text-center mt-3">{item.name}</h5>
 
                         <div className="d-flex justify-content-between mt-5">
                             <a href="#" className="btn btn-primary">Details</a>
