@@ -23,9 +23,7 @@ export const Navbar = () => {
 							<button className="btn btn-warning ms-2">Vehicles</button>
 						</Link>
 
-
 					</ul>
-
 				</div>
 			</div>
 		</nav>

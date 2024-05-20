@@ -14,8 +14,8 @@ import { Vehicles } from "./views/Vehicles.js"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { DetailsUsers } from "./views/DetailsUsers.js";
 import { Contacts } from "./views/Contacts.js";
+import { DetailsCharacters } from "./views/DetailsCharacters.js";
 
 //create your first component
 const Layout = () => {
@@ -33,7 +33,7 @@ const Layout = () => {
 						<Route path="/Characters" element={<Characters />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
-						<Route path="/characterDetails/:personajeId" element={<DetailsUsers/>} />		
+						<Route path="/detail-users/:personajeId" element={<DetailsCharacters/>} />		
 						<Route path="/planets" element={<Planets/>} />		
 						<Route path="/contacts" element={<Contacts/>} />		
 						<Route path="/vehicles" element={<Vehicles/>} />		

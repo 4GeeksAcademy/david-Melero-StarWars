@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isLogin: false,
 			users: [],
 			title: '',
-			currentUser: null,
+			currentUser: {},
+			currentUserUrl: "",
 			planets: [],
 			vehicles: [],
 			uriContacts: 'https://playground.4geeks.com/contact',
@@ -35,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!response.ok) {
 					console.log('Error');
 					return
-				} 
+				}
 				const data = await response.json();
 				console.log(data);
 				setStore({ users: data.results });
@@ -43,15 +44,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			settingUser: async (user) => {
-				
-				
-			//hacer fetch de Api user.url
-			console.log(user);
-				setStore({currentUser:user})
-			
-			
+			settingUser: (user) => { setStore({currentUser: user}); },
+			settingUserUrl: (url) => { setStore({ currentUserUrl: url }); },
+
+			getCurrentUser: async () => {
+				const uri = getStore().currentUserUrl;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ currentUser: data.result });
 			},
+
 
 			getPlanets: async () => {
 				const response = await fetch('https://www.swapi.tech/api/planets')
@@ -94,6 +101,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		}
 	};
-};
+}
 
 export default getState;
