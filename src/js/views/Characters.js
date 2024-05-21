@@ -15,9 +15,9 @@ export const Characters = () => {
 
   return (
     
-    <div className="row row-cols-3 row-cols-lg-5 g-2  " style={{ margin: '10px', backgroundImage: `url(${imagen})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+    <div className="row row-cols-3 row-cols-lg-5 g-2  " style={{ margin: '10px', backgroundImage: `url(${imagen})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', marginBottom: '10px'}}>
       {store.users.map((item, index) => (
-        <div key={item.uid} className="card  bg-dark mt-2" style={{ width: '18rem', margin: '0 auto' }}>
+        <div key={item.uid} className="card  bg-dark mt-2 mb-2" style={{ width: '18rem', margin: '0 auto' }}>
           <img src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} className="card-img-top mt-2 " alt="..." />
           <div className="card-body">
             <h5 className="card-title text-white text-center">{item.name}</h5>
