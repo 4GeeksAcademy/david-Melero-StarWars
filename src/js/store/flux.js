@@ -10,8 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentUserUrl: "",
 			planets: [],
 			vehicles: [],
-			uriContacts: 'https://playground.4geeks.com/contact',
-			agenda: '/David',
+			uriContacts: 'https://playground.4geeks.com/contact/',
+			agenda: '/mrRobot',
 			contacts: [{}]
 		},
 		actions: {
@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			settingUser: (user) => { setStore({currentUser: user}); },
+			settingUser: (user) => { setStore({ currentUser: user }); },
 			settingUserUrl: (url) => { setStore({ currentUserUrl: url }); },
 
 			getCurrentUser: async () => {
@@ -84,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			getContacts: async () => {
-				const uri = getStore().uriContacts + '/agendas' + getStore().agenda + '/contacts'
+				const uri = getStore().uriContacts + 'agendas' + getStore().agenda + '/contacts'
 				// const uri = 'https://playground.4geeks.com/contact/agendas/David/contacts'
 
 				const response = await fetch(uri)
@@ -96,8 +96,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 				console.log(data.contacts);
 				setStore({ contacts: data.contacts })
+			},
+			// En contact es el parámetro que recibo de Login, dataToSend
+			addContact: async (dataToSend) => {
+				// console.log("datos enviados ", dataTosend);
+				const uri = getStore().uriContacts + '/agendas' + getStore().agenda + '/contacts'
+				// const uri = `${getStore().uriContacts}agendas${getStore().agenda}/contacts}}`
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options)
+				console.log( "datos RESPONSE", response);
+				if (!response.ok) {
+					console.log("no se enviaron correctamente ", response.status, response.statusText)
+					return
+				}
+				const data = {}
 			}
-
 
 		}
 	};
