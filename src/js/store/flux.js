@@ -8,6 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			title: '',
 			currentUser: {},
 			currentUserUrl: "",
+			currentPlanet: {},
+			currentPlanetsUrl:"",
 			planets: [],
 			vehicles: [],
 			uriContacts: 'https://playground.4geeks.com/contact/',
@@ -59,6 +61,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ currentUser: data.result });
 			},
 
+			settingPlanet: (user) => { setStore({ currentPlanet: user }); },
+			settingPlanetUrl: (url) => { setStore({ currentPlanetsUrl: url }); },
+
+			getCurrentPlanets:async () => { 
+				const uri = getStore().currentPlanetsUrl;
+				console.log("soy URI:", uri);
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ currentPlanet: data.result });
+			},
+			
 
 			getPlanets: async () => {
 				const response = await fetch('https://www.swapi.tech/api/planets')
@@ -100,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// En contact es el parámetro que recibo de Login, dataToSend
 			addContact: async (dataToSend) => {
 				// console.log("datos enviados ", dataTosend);
-				const uri = getStore().uriContacts + '/agendas' + getStore().agenda + '/contacts'
+				const uri = getStore().uriContacts + 'agendas' + getStore().agenda + '/contacts'
 				// const uri = `${getStore().uriContacts}agendas${getStore().agenda}/contacts}}`
 				const options = {
 					method: 'POST',
@@ -110,9 +128,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(dataToSend)
 				}
 				const response = await fetch(uri, options)
-				console.log( "datos RESPONSE", response);
+				console.log("datos RESPONSE", response);
 				if (!response.ok) {
-					console.log("no se enviaron correctamente ", response.status, response.statusText)
+					console.log("no se enviaron ", response.status, response.statusText)
 					return
 				}
 				const data = {}

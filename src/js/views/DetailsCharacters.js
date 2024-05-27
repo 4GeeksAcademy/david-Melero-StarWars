@@ -1,16 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { json } from "react-router";
 
 export const DetailsCharacters = () => {
 
   const { store, actions } = useContext(Context)
-
-  // const [currentUser, setCurrentUser] = useState({});
-
-  // useEffect(() => {
-  //   setCurrentUser(store.currentUser);
-  // }, [store.currentUser]);
 
   console.log("hola", store.currentUser);
 
@@ -18,28 +11,28 @@ export const DetailsCharacters = () => {
   return (
 
 
-    <div class="card mb-3 m-4 bg-dark" >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src={`https://starwars-visualguide.com/assets/img/characters/${store.currentUser.uid}.jpg`} class="img-fluid rounded-start" alt="..." />
+    <div className="card mb-3 m-4 bg-dark" >
+      <div className="row g-0">
+        <div className="col-md-4">
+          <img src={`https://starwars-visualguide.com/assets/img/characters/${store.currentUser.uid}.jpg`} className="img-fluid rounded-start" alt="..." />
         </div>
         {Object.values(store.currentUser).length
 
           ?
 
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title text-white "> Name: <span >{store.currentUser.properties.name}</span></h4>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h4 className="card-title text-white "> Name: <span >{store.currentUser.properties.name}</span></h4>
               <hr style={{color: "white"}}></hr>
-              <p class="card-text text-white"><span className="fs-6">Eye color: </span> 
+              <p className="card-text text-white"><span className="fs-6">Eye color: </span> 
                {store.currentUser.properties.eye_color}</p>
-              <p class="card-text text-white"><span className="fs-6">Hair color: </span> 
+              <p className="card-text text-white"><span className="fs-6">Hair color: </span> 
                {store.currentUser.properties.hair_color}</p>
-              <p class="card-text text-white"><span className="fs-6">Skin color: </span> 
+              <p className="card-text text-white"><span className="fs-6">Skin color: </span> 
                {store.currentUser.properties.skin_color}</p>
-              <p class="card-text text-white"><span className="fs-6">Birth year: </span> 
+              <p className="card-text text-white"><span className="fs-6">Birth year: </span> 
                {store.currentUser.properties.birth_year}</p>
-              <p class="card-text text-white"><span className="fs-6">Gender: </span> 
+              <p className="card-text text-white"><span className="fs-6">Gender: </span> 
                {store.currentUser.properties.gender}</p>
             
             </div>

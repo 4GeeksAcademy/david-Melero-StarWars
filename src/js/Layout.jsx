@@ -16,6 +16,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Contacts } from "./views/Contacts.js";
 import { DetailsCharacters } from "./views/DetailsCharacters.js";
+import { DetailsPlanets } from "./views/DetailsPlanets.js";
 import { Login } from "./views/Login.js";
 
 
@@ -36,6 +37,7 @@ const Layout = () => {
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="/detail-users/:personajeId" element={<DetailsCharacters/>} />		
+						<Route path="/detail-planets/:planetsId" element={<DetailsPlanets/>} />		
 						<Route path="/planets" element={<Planets/>} />		
 						<Route path="/contacts" element={<Contacts/>} />		
 						<Route path="/login" element={<Login/>} />		
