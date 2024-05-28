@@ -9,12 +9,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentUser: {},
 			currentUserUrl: "",
 			currentPlanet: {},
-			currentPlanetsUrl:"",
+			currentPlanetsUrl: "",
 			planets: [],
 			vehicles: [],
 			uriContacts: 'https://playground.4geeks.com/contact/',
 			agenda: '/mrRobot',
-			contacts: [{}]
+			contacts: [{}],
+			counter: 0,
+			favorites: ['David', 'paca']
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); }, // Use getActions to call a function within a fuction
@@ -44,8 +46,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ users: data.results });
 			},
 
-
-
 			settingUser: (user) => { setStore({ currentUser: user }); },
 			settingUserUrl: (url) => { setStore({ currentUserUrl: url }); },
 
@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			settingPlanet: (user) => { setStore({ currentPlanet: user }); },
 			settingPlanetUrl: (url) => { setStore({ currentPlanetsUrl: url }); },
 
-			getCurrentPlanets:async () => { 
+			getCurrentPlanets: async () => {
 				const uri = getStore().currentPlanetsUrl;
 				console.log("soy URI:", uri);
 				const response = await fetch(uri);
@@ -76,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data);
 				setStore({ currentPlanet: data.result });
 			},
-			
+
 
 			getPlanets: async () => {
 				const response = await fetch('https://www.swapi.tech/api/planets')
@@ -133,10 +133,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("no se enviaron ", response.status, response.statusText)
 					return
 				}
-				const data = {}
-			}
+				getActions().getContacts()
+			},
+			handleDelete: async (contactId) => {
+				const uri = `${getStore().uriContacts}agendas${getStore().agenda}/contacts/${contactId}`
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+					}
+				}
 
-		}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText);
+					return
+				}
+				getActions().getContacts()
+
+			},
+			increase: () => { setStore({ counter: getStore().counter + 1 }) },
+			decrease: () => { setStore({ counter: getStore().counter - 1 }) },
+			addFavorites: (newFavorite) => { setStore({favorites: [...getStore().favorites, newFavorite]})},
+			removeFavorites: (removeItem) => { 
+				setStore({favorites: getStore().favorites.filter((item)=> item != removeItem)})
+			}
+		},
 	};
 }
 
