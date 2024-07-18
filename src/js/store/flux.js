@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			agenda: '/mrRobot',
 			contacts: [{}],
 			counter: 0,
-			favorites: ['David', 'paca']
+			favorites: []
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); }, // Use getActions to call a function within a fuction
@@ -135,6 +135,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				getActions().getContacts()
 			},
+			updateContact: async (id, updatedContact) => {
+                try {
+                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/cesar-amcolson/contacts/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify(updatedContact)
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`Error status: ${resp.status}`);
+                    }
+                    await getActions().getContacts();
+                } catch (error) {
+                    console.error("Error updating contact:", error);
+                }
+            },
 			handleDelete: async (contactId) => {
 				const uri = `${getStore().uriContacts}agendas${getStore().agenda}/contacts/${contactId}`
 				const options = {
